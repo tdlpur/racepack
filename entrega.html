@@ -159,8 +159,25 @@
   </div>
 
   <script>
-    const urlEntregados = "https://api.raceresult.com/391661/UGL3T1MUSR7Y40Z0KDVL5RORNOTD44BV";
-    const urlPendientes = "https://api.raceresult.com/391661/I03LMQA23BNEYG993OGEXE1EHK74BW1A";
+    const eventos = {
+  elseco: {
+    entregados: "https://api.raceresult.com/391661/UGL3T1MUSR7Y40Z0KDVL5RORNOTD44BV",
+    pendientes: "https://api.raceresult.com/391661/I03LMQA23BNEYG993OGEXE1EHK74BW1A"
+  },
+
+  abrahamrosa: {
+    entregados: "https://api.raceresult.com/376897/STWB2HU5D6WVCC41Z81J79FEP06IJF2P",
+    pendientes: "https://api.raceresult.com/376897/6JS5SK7CNI0B2YQ363PO4KCGJOGQTYVH"
+  }
+};
+
+const parametros = new URLSearchParams(window.location.search);
+const evento = parametros.get("evento") || "elseco";
+
+const configuracion = eventos[evento] || eventos.elseco;
+
+const urlEntregados = configuracion.entregados;
+const urlPendientes = configuracion.pendientes;
 
     async function getCount(url) {
       const response = await fetch(url + "?t=" + Date.now());
